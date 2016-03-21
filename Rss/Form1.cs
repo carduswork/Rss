@@ -25,8 +25,29 @@ namespace Rss
             stus.Add(new Student("你", "小米", "110"));
             stus.Add(new Student("他", "魅族", "119"));
             stus.Add(new Student("我", "华为", "120"));
+            reload();
+
+        }
+
+        private void reload()
+        {
             listView1.Items.Clear();
-            listView1.Items.AddRange(stus);
+            foreach (Student s in stus)
+            {
+                ListViewItem lvi = new ListViewItem(s.Name);
+                lvi.SubItems.Add(s.Type);
+                lvi.SubItems.Add(s.Num);
+                listView1.Items.Add(lvi);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            stus.Add(new Student(textBox1.Text,textBox2.Text,textBox3.Text));
+            reload();
+            textBox3.Clear();
+            textBox1.Clear();
+            textBox2.Clear();
         }
     }
 }
